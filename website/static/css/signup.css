@@ -9,65 +9,75 @@
   --background-color: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat";
+  font-family: "Montserrat", Arial, sans-serif;
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   align-items: center;
-  gap: 5rem;
+  gap: 2rem;
+  line-height: 1.6;
 }
 
+/* ===== HEADER STYLES ===== */
 header {
   width: 100%;
-  height: 12vh;
+  height: 10vh;
+  min-height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--primary-color);
   position: fixed;
   background: transparent;
-  transition: background 0.3s ease;
-  transition: height 0.3s ease-in-out;
-  transition: width 0.6s ease-in-out;
-
+  transition: all 0.3s ease;
   z-index: 1000;
+  padding: 0 1rem;
 }
 
 header.scrolled {
   background: var(--scrolled-color);
   height: 8vh;
+  min-height: 50px;
   backdrop-filter: blur(0.6rem);
-  width: 85%;
-  margin-top: 1vh;
-  border-radius: 3rem;
+  width: 90%;
+  margin-top: 0.5vh;
+  border-radius: 2rem;
 }
 
-header nav h2 {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-
-/* Header and Navbar */
 header nav {
-  width: 80%;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 1.2rem;
+  padding: 0.5rem 1rem;
 }
+
+header nav h2 {
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-weight: bold;
+  margin: 0;
+}
+
 nav a {
   color: var(--primary-color);
   text-decoration: none;
   text-transform: uppercase;
-  transition: ease-in-out 0.3s;
+  transition: all 0.3s ease;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
 }
+
 nav a:hover {
   padding: 0.3rem 0.6rem;
-  border-radius: 0.3rem;
   background-color: var(--secondary-color);
 }
 
@@ -76,14 +86,16 @@ nav a:hover {
 }
 
 .login {
-  padding: 0.4rem 4rem;
+  padding: 0.4rem 2rem;
   border: 0.1rem solid var(--primary-color);
-  border-radius: 3rem;
+  border-radius: 2rem;
   background-color: transparent;
   color: var(--primary-color);
   text-transform: uppercase;
-  transition: ease-in-out 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  white-space: nowrap;
 }
 
 .login:hover {
@@ -91,403 +103,719 @@ nav a:hover {
   color: var(--background-color);
 }
 
-/* first section of text css */
+/* ===== MAIN SECTIONS ===== */
 .section_one {
-  width: 90%;
+  width: 95%;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
-  height: 90vh;
+  gap: 2rem;
+  min-height: 80vh;
+  margin-top: 10vh;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
+
 .section_one img {
-  width: 70vw;
-  height: 70vh;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  min-height: 300px;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
 .section_one .main {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 300px;
 }
+
 .section_one h1 {
   color: var(--primary-color);
   margin: 0;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  line-height: 1.2;
 }
 
 .section_one p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #555;
 }
 
 .section_one .main button {
   background-color: var(--primary-color);
   border: none;
-  width: 70%;
-  padding: 0.6rem;
+  width: 100%;
+  max-width: 300px;
+  padding: 0.8rem 1.5rem;
   color: var(--background-color);
   font-weight: bold;
-  border-radius: 3rem;
-  font-size: 1.2rem;
-  transition: ease-in-out 0.3s;
+  border-radius: 2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .main button:hover {
   background-color: var(--background-color);
   border: 0.1rem solid var(--primary-color);
   color: var(--primary-color);
-  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(4, 86, 171, 0.3);
 }
 
-/* second division , first section of text css */
-
+/* ===== SECTION 2 ===== */
 .section_2 {
-  background-color: #daf0fd;
-  border-radius: 40vw 0 0 0;
+  background-color: var(--secondary-color);
+  border-radius: 3rem 3rem 0 0;
   width: 100%;
-  justify-content: center;
+  padding: 2rem 0;
+}
+
+.section_2 .text {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.section_2 .text{
-  display: inline-flex;
-}
+
 .section_2 .text img {
-  width: 50%;
+  width: 100%;
+  max-width: 400px;
   height: auto;
+  border-radius: 1rem;
 }
+
 .section_2 .text2 {
-  padding-left: 15vw;
+  flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  font-size: 1.8rem;
-  gap: 1.2rem;
-  padding-top: 35vh;
-  padding-bottom: 15vh;
+  gap: 1.5rem;
+  padding: 1rem;
 }
+
 .section_2 h1 {
   color: var(--primary-color);
   margin: 0;
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 6vw, 3rem);
+  line-height: 1.2;
 }
+
 .section_2 .deux {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #555;
 }
-/* second part of the second section */
-.section_2 .text3{
-  justify-items: center;
+
+/* ===== CARDS SECTION ===== */
+.section_2 .text3 {
   background-color: white;
-  width: auto;
-  height: auto;
   border-radius: 2rem;
-  margin: 4rem;
-  
+  margin: 2rem 1rem;
+  padding: 2rem 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.section_2 .text3 .why {
+  color: var(--primary-color);
+  margin: 0 0 2rem 0;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: bold;
+  text-align: center;
 }
 
 .section_2 .text3 .text4 {
-  padding: 1.2rem;
-  display:inline-flex;
-  gap: 3rem;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  justify-content: center;
-  padding-left: 4rem;
-  padding-bottom: 3rem;
-  
-}
-.section_2 .text3 .why {
-  color: var(--primary-color);
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-/* first of the column */
-.section_2 .text3 .text4 .first {
-display: flex;
-flex-direction: column;
-background-color: var(--secondary-color);
-width:30rem;
-height: 30rem;
-min-height: 22rem;
-align-items: center;
-transition: all 0.3s ease;
-border-radius: 1.2rem;
-padding: 1rem;
-box-sizing: border-box;
-}
-.section_2 .text3 .text4 .first:hover {
-transform: scale(1.05);
-box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-}
-.section_2 .text3 .text4 .first h3 {
-color: var(--primary-color);
-margin: 0;
-font-size: 1.8rem;
-}
-.section_2 .text3 .text4 .first p{
-justify-content: center;
-padding-left: 0.6rem;
-font-size: 1.2rem;
-}
-.section_2 .text3 .text4 .first img{
-width: 60%;
-height: auto;
-max-width: 16rem;
-}
-/* second of the column */
-.section_2 .text3 .text4 .second{
-display: flex;
-flex-direction: column;
-background-color: var(--secondary-color);
-width: 30rem;
-height: 30rem;
-min-height: 22rem;
-align-items: center;
-transition: all 0.3s ease;
-border-radius: 1.2rem;
-padding: 1rem;
-box-sizing: border-box;
-}
-.section_2 .text3 .text4 .second:hover{
-transform: scale(1.05);
-box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-}
-.section_2 .text3 .text4 .second h3{
-color: var(--primary-color);
-margin: 0;
-font-size: 1.8rem;
-}
-.section_2 .text3 .text4 .second p{
-justify-content: center;
-padding-left: 0.6rem;
-font-size: 1.2rem;
-}
-.section_2 .text3 .text4 .second img{
-width: 60%;
-height: auto;
-max-width: 16rem;
-}
-/* third of the column */
-.section_2 .text3 .text4 .third {
-display: flex;
-flex-direction: column;
-background-color: var(--secondary-color);
-width: 30rem;
-height: 30rem;
-min-height: 22rem;
-align-items: center;
-transition: all 0.3s ease;
-border-radius: 1.2rem;
-padding: 1rem;
-box-sizing: border-box;
-}
-.section_2 .text3 .text4 .third:hover {
-transform: scale(1.05);
-box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
-}
-.section_2 .text3 .text4 .third h3 {
-color: var(--primary-color);
-margin: 0;
-font-size: 1.8rem;
-}
-.section_2 .text3 .text4 .third p{
-justify-content: center;
-padding-left: 0.6rem;
-font-size: 1.2rem;
-}
-.section_2 .text3 .text4 .third img{
-width: 60%;
-height: auto;
-max-width: 16rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 0 1rem;
 }
 
-/* Responsive Design for the singup page */
-/* body background */
+.section_2 .text3 .text4 .first,
+.section_2 .text3 .text4 .second,
+.section_2 .text3 .text4 .third {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  width: 100%;
+  max-width: 350px;
+  min-height: 400px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.section_2 .text3 .text4 .first:hover,
+.section_2 .text3 .text4 .second:hover,
+.section_2 .text3 .text4 .third:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+.section_2 .text3 .text4 .first h3,
+.section_2 .text3 .text4 .second h3,
+.section_2 .text3 .text4 .third h3 {
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  line-height: 1.3;
+}
+
+.section_2 .text3 .text4 .first p,
+.section_2 .text3 .text4 .second p,
+.section_2 .text3 .text4 .third p {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
+  margin: 1rem 0;
+  flex-grow: 1;
+}
+
+.section_2 .text3 .text4 .first img,
+.section_2 .text3 .text4 .second img,
+.section_2 .text3 .text4 .third img {
+  width: 80%;
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* ===== LOGIN/SIGNUP PAGE STYLES ===== */
 .body {
   background-image: url("signup.png");
   position: relative;
   background-position: center;
-   margin: 0;           /* remove default margins */
+  margin: 0;
   padding: 0;
-  width: 100vw;        /* 100% of viewport width */
-  height: 100vh;       /* 100% of viewport height */
-  overflow: hidden; 
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
   background-size: cover;
-  min-height: 100vh;
-  
+  background-attachment: fixed;
 }
 
 .body::before {
   content: "";
-  position:absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  margin: 0;           /* remove default margins */
-  padding: 0;
-  width: 100vw;        /* 100% of viewport width */
-  height: 100vh;       /* 100% of viewport height */
-  overflow: hidden; 
-  background-color:rgba(25, 36, 46, 0.2);
-  z-index: -1;
-  min-height: 100vh;
+  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(25, 36, 46, 0.2);
+  z-index: -1;
 }
 
-/* forms background */
-.wrapper {  
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+/* ===== FORM WRAPPER ===== */
+.wrapper {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
   text-align: center;
-  background: rgba(4, 86, 171, 0.8);
-  backdrop-filter: blur(0.3rem);
+  background: rgba(7, 106, 235, 0.85);
+  backdrop-filter: blur(0.5rem);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 2rem;
-  padding: 3%; /* Reduced from 5% to 3% */
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: auto;
-  margin-left: 55%;
-  margin-top: 8%; /* Adjusted to center the smaller form */
-  width: 35%;
-  min-width: 300px;
-  height: auto;
-  min-height: 350px; /* Reduced from 500px to 350px */
-  box-sizing: border-box;
-  max-width: 600px;
-  max-height: 450px; /* Reduced from 700px to 450px */
+  margin: 5vh auto;
+  width: 90%;
+  max-width: 450px;
+  min-height: 450px;
+  position: relative;
+  overflow: visible;
 }
 
-/* signup and login word */
 .wrapper h1 {
   color: white;
-  font-size: 1.8rem; /* Slightly reduced from 2rem */
-  margin: 0.5rem 0; /* Reduced margin */
-  line-height: 1.2; /* Add line height for better spacing */
-  white-space: pre-line; /* This will respect line breaks in the text */
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
 }
 
 .wrapper .span {
-  font-size: 2.2rem; /* Slightly reduced from 2.5rem */
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
   font-weight: 500;
   color: white;
-  display: inline; /* Changed from block to inline to keep on same line */
-  margin-top: 0.5rem; /* Add space between lines */
+  display: block;
+  margin: -0.3rem 0 1.5rem 0;
 }
 
 .wrapper .span1 {
-  font-size: 2.2rem; /* Same size as ANIDASO */
+  font-size: clamp(2.4rem, 6vw, 3rem);
   font-weight: 500;
   color: white;
-  display: inline; /* Keep it inline with ANIDASO */
-  margin-left: -0.2rem; /* Slight negative margin to bring it closer */
+  margin-left: -0.3rem;
 }
 
 .wrapper h2 {
   color: white;
-  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  margin-bottom: 1.5rem;
   text-decoration: underline;
-  font-size: 1.1rem; /* Slightly reduced from 1.2rem */
+  font-size: clamp(1rem, 3vw, 1.2rem);
 }
 
-/* signup entities */
+/* ===== FORM STYLES ===== */
 .wrapper form {
-  flex-direction: column;
-  gap: 1rem; /* Reduced from 1.5rem */
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 1rem;
   padding: 0;
   margin: 0;
 }
 
-/* name */
+/* Error message styling */
+#error-message {
+  color: #ff4757;
+  background-color: rgba(255, 71, 87, 0.1);
+  border: 1px solid #ff4757;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  display: none;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.15);
+  backdrop-filter: blur(4px);
+  animation: slideIn 0.3s ease-out;
+}
+
+#error-message:not(:empty) {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .wrapper form .name {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
-  gap: 2%;
-}
-.wrapper form .name input {
-  flex: 1;
-  border-radius: 0.3rem;
-  background-color: #b0cfee;
-  border: none;
-  padding: 0.5rem; /* Slightly reduced from 0.6rem */
-  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
 }
 
-/* email */
+.wrapper form .name input {
+  border-radius: 0.5rem;
+  background-color: #b0cfee;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
 .wrapper form .email {
   display: flex;
-  width: 104%;
-  gap: 4%;
-}
-.wrapper form .email span {
-  font-size: 1rem;
-  color: black;
-}
-.wrapper form .email input {
-  flex: 1;
-  border-radius: 0.3rem;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
   background-color: #b0cfee;
-  border: none;
-  padding: 0.5rem; /* Slightly reduced from 0.6rem */
-  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
 }
 
-/* password & ID */
+.wrapper form .email span {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+.wrapper form .email input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem 0.5rem;
+  font-size: 1rem;
+  outline: none;
+}
+
 .wrapper form .pass,
 .wrapper form .pass_2 {
   display: flex;
-  width: 104%;
-  gap: 2%;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  background-color: #b0cfee;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
 }
+
 .wrapper form .pass input,
 .wrapper form .pass_2 input {
   flex: 1;
-  border-radius: 0.3rem;
-  background-color: #b0cfee;
+  background: transparent;
   border: none;
-  padding: 0.5rem; /* Slightly reduced from 0.6rem */
-  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+  padding: 1rem 0.5rem;
+  font-size: 1rem;
+  outline: none;
 }
 
-/* signup button */
+.wrapper form .pass label,
+.wrapper form .pass_2 label {
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper form .pass svg,
+.wrapper form .pass_2 svg {
+  width: 20px;
+  height: 20px;
+}
+
 .wrapper form .submit {
-  padding: 0.6rem 2rem; /* Reduced from 0.8rem */
-  border-radius: 0.5rem;
-  margin: 0.5rem auto; /* Reduced margin */
-  background-color: #b0cfee;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  margin: 1rem auto 0.5rem;
+  background-color: #2c5aa0;
   color: white;
   border: none;
   text-transform: uppercase;
-  transition: ease-in-out 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
   font-weight: bold;
   font-size: 1rem;
-  width: 60%; /* Reduce width to make centering more visible */
-  max-width: 150px; /* Smaller max-width */
+  width: 60%;
+  min-width: 120px;
+  max-width: 200px;
 }
 
 .wrapper form .submit:hover {
-  box-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
+  background-color: #1a4480;
+  transform: translateY(-2px);
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.3);
 }
 
-/* text & links - moved inside the wrapper */
-.wrapper .signup-link {
-  color: white;
-  font-size: 0.9rem;
-  margin: 1rem 0 0 0;
-  text-align: center;
+/* Forgot password link - positioned right below the password input */
+.wrapper .forgot-password {
+  text-align: right;
+  margin: -0.5rem 0 0.5rem 0;
+  padding: 0;
+  border: none;
 }
+
+.wrapper .forgot-password a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.wrapper .forgot-password a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.wrapper .forgot-password a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.wrapper .forgot-password a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ===== SIGNUP/LOGIN LINKS ===== */
+.wrapper .signup-link {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 400;
+  width: 100%;
+  position: relative;
+}
+
 .wrapper .signup-link .link_1 {
   color: #b0cfee;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  position: relative;
+  transition: all 0.3s ease;
 }
+
 .wrapper .signup-link .link_1:hover {
-  text-decoration: underline;
+  color: white;
+}
+
+.wrapper .signup-link .link_1::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 50%;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.wrapper .signup-link .link_1:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large tablets and small desktops */
+@media screen and (min-width: 769px) {
+  body {
+    gap: 5rem;
+  }
+  
+  .section_one {
+    flex-wrap: nowrap;
+    gap: 3rem;
+  }
+  
+  .section_one img {
+    width: 50%;
+    max-width: 600px;
+  }
+  
+  .section_2 .text {
+    flex-wrap: nowrap;
+    padding: 0 2rem;
+  }
+  
+  .section_2 .text img {
+    width: 45%;
+    max-width: 500px;
+  }
+  
+  .section_2 .text2 {
+    padding: 2rem;
+  }
+  
+  .section_2 .text3 .text4 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+  
+  .wrapper form .name {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .wrapper form .name input {
+    flex: 1;
+  }
+  
+  .wrapper {
+    margin: 8vh auto;
+    width: 85%;
+    max-width: 500px;
+    padding: 3rem;
+    min-height: 500px;
+  }
+}
+
+/* Medium tablets */
+@media screen and (max-width: 768px) {
+  header nav {
+    padding: 0.3rem 0.8rem;
+  }
+  
+  .login {
+    padding: 0.3rem 1rem;
+  }
+  
+  .section_one {
+    gap: 1.5rem;
+    margin-top: 12vh;
+  }
+  
+  .section_2 .text3 .text4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Small tablets and large phones */
+@media screen and (max-width: 600px) {
+  header {
+    height: 8vh;
+  }
+  
+  header.scrolled {
+    width: 95%;
+    height: 7vh;
+  }
+  
+  .section_one {
+    margin-top: 10vh;
+    gap: 1rem;
+  }
+  
+  .section_2 .text {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .section_2 .text2 {
+    padding: 1rem;
+  }
+  
+  .section_2 .text3 {
+    margin: 2rem 0.5rem;
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .section_2 .text3 .text4 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+  }
+  
+  .wrapper {
+    margin: 3vh auto;
+    width: 95%;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    min-height: 400px;
+  }
+  
+  .body {
+    background-attachment: scroll;
+  }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 480px) {
+  header nav h2 {
+    font-size: 1.2rem;
+  }
+  
+  nav a {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+  }
+  
+  .login {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .section_one {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  
+  .section_one .main {
+    gap: 1rem;
+  }
+  
+  .section_2 .text3 {
+    margin: 1rem 0.25rem;
+    padding: 1rem 0.25rem;
+  }
+  
+  .wrapper {
+    margin: 2vh auto;
+    padding: 1rem;
+    width: 98%;
+    min-height: 380px;
+  }
+  
+  .wrapper form {
+    gap: 0.8rem;
+  }
+  
+  .wrapper form .email,
+  .wrapper form .pass,
+  .wrapper form .pass_2 {
+    padding: 0.1rem;
+  }
+  
+  .wrapper form .submit {
+    width: 80%;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* Extra small phones */
+@media screen and (max-width: 360px) {
+  .section_2 .text3 .text4 .first,
+  .section_2 .text3 .text4 .second,
+  .section_2 .text3 .text4 .third {
+    min-height: 350px;
+    padding: 1rem;
+  }
+  
+  .wrapper {
+    width: 100%;
+    margin: 1vh auto;
+    border-radius: 1rem;
+    min-height: 360px;
+  }
+}
+
+/* Landscape orientation for mobile devices */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .section_one {
+    min-height: 60vh;
+    margin-top: 15vh;
+  }
+  
+  .wrapper {
+    margin: 2vh auto;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+}
+
+/* High DPI displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2), 
+       screen and (min-resolution: 192dpi) {
+  .body {
+    background-attachment: scroll;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+  }
+  
+  .section_one p,
+  .section_2 .deux {
+    color: #ccc;
+  }
 }
