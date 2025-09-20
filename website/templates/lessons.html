@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIDASOɔ - Lessons</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lesson.css') }}">
+    <script src="{{ url_for('static', filename='js/html.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lesson.js') }}"></script>
+    
+    
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ANIDASOO</a>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('views.home') }}" class="nav-link">HOME</a></li>
+                <li><a href="{{ url_for('views.lessons') }}" class="nav-link active">LESSONS</a></li>
+                <li><a href="{{ url_for('views.about_us') }}" class="nav-link">ABOUT US</a></li>
+                <li><a href="{{ url_for('views.contact_us') }}" class="nav-link">CONTACT US</a></li>
+                <li class="user-profile">
+                    <div class="profile-icon" onclick="toggleProfile()">👤</div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-info">
+                            <h3 id="studentName">John Doe</h3>
+                            <p id="studentLevel">Level 200 Student</p>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">Logout</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">LESSONS</h1>
+            <div class="level-dropdown">
+                <div onclick="toggleLevelDropdown()">
+                    <span class="dropdown-arrow">▼</span>
+                    <span class="selected-level" id="selectedLevel">All Levels</span>
+                </div>
+                <div class="level-dropdown-content" id="levelDropdownContent">
+                    <div class="level-option active" onclick="selectLevel('all')">All Levels</div>
+                    <div class="level-option" onclick="selectLevel('100')">Level 100</div>
+                    <div class="level-option" onclick="selectLevel('200')">Level 200</div>
+                    <div class="level-option" onclick="selectLevel('300')">Level 300</div>
+                    <div class="level-option" onclick="selectLevel('400')">Level 400</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messageContainer"></div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="addedCount">0</div>
+                <div class="stat-label">Courses Added</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="deletedCount">0</div>
+                <div class="stat-label">Courses Deleted</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="remainingAdds">7</div>
+                <div class="stat-label">Remaining Adds</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="remainingDeletes">2</div>
+                <div class="stat-label">Remaining Deletes</div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="tab active" onclick="filterCourses('all', this)">All Courses</div>
+            <div class="tab" onclick="filterCourses('added', this)">Added Courses</div>
+            <div class="tab" onclick="filterCourses('deleted', this)">Deleted Courses</div>
+            <div class="tab" onclick="filterCourses('available', this)">Available</div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for courses..." oninput="searchCourses()">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Level Sections -->
+        <div id="coursesContainer">
+            <!-- Level sections will be dynamically generated -->
+        </div>
+    </div>
+
+    <script>
+        // Course data - Updated with your provided courses
+        const courseData = {
+            level100: [
+                "Algebra and Trigonometry",
+                "Statistics and Probability", 
+                "Calculus I",
+                "Matrices and Geometry", 
+                "Programming Fundamentals",
+                "Office Productivity Tools",
+                "Introduction to Computer Science",
+                "Hardware Fundamentals and Circuitry",
+                "Critical Thinking"
+            ],
+
+            level200: [
+                "Academic Writing",
+                "Information Systems",
+                "Calculus II", 
+                "Computer Organization and Architecture",
+                "Numerical Methods",
+                "Introduction to African Studies",
+                "Programming II",
+                "Data Structures & Algorithms",
+                "Data Communications & Networking I",
+                "Computer Ethics",
+                "Digital Electronics",
+                "Introductory Abstract Algebra",
+                "Introductory Computational Mathematics"
+            ],
+
+            level300: [
+                "Object Oriented Analysis & Design",
+                "Discrete Mathematics",
+                "Web Technologies and Development",
+                "Database Management Systems",
+                "Operating Systems",
+                "Embedded Systems",
+                "Computer Vision",
+                "Introduction to Computer Graphics",
+                "Programming III (VB .NET)",
+                "Design and Analysis of Algorithms",
+                "Software Engineering",
+                "Introduction to Artificial Intelligence",
+                "Research Methods in Computing",
+                "Introduction to Robotics",
+                "Introduction to Parallel Computing",
+                "Advanced Web Technologies"
+            ],
+
+            level400: [
+                "Compilers",
+                "Theory and Survey of Programming Languages",
+                "Formal Methods and Models",
+                "Accounting Principles in Computing",
+                "Software Modeling and Simulation",
+                "Data Mining and Warehousing",
+                "Data Communication and Networking II",
+                "System Programming",
+                "Computer Systems Security",
+                "Human Computer Interaction",
+                "Management Principles in Computing",
+                "Multimedia Applications",
+                "Expert Systems",
+                "Concurrent & Distributed Systems",
+                "Mobile Computing"
+            ]
+        };
+
+        // Student account data
+        let studentAccount = {
+            name: "John Doe",
+            level: "200",
+            addedCourses: [],
+            deletedCourses: [],
+            maxAdds: 7,
+            maxDeletes: 2
+        };
+
+        // State tracking
+        let currentFilter = 'all';
+        let sectionsVisible = true;
+
+        // Initialize the page
+        function init() {
+            updateProfileInfo();
+            renderCourses();
+            updateStats();
+        }
+
+        // Profile functions
+        function toggleProfile() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.user-profile')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+
+        function updateProfileInfo() {
+            document.getElementById('studentName').textContent = studentAccount.name;
+            document.getElementById('studentLevel').textContent = `Level ${studentAccount.level} Student`;
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                showMessage('Logging out...', 'warning');
+                setTimeout(() => {
+                    alert('Logout successful! Redirecting to login page...');
+                    // Here you would redirect to login page
+                    // window.location.href = 'login.html';
+                }, 1500);
+            }
+        }
+
+        // Course management functions
+        function addCourse(courseId, courseName, level) {
+            if (studentAccount.addedCourses.length >= studentAccount.maxAdds) {
+                showMessage('Maximum number of courses added (7). Cannot add more courses.', 'error');
+                return;
+            }
+
+            if (studentAccount.addedCourses.includes(courseId)) {
+                showMessage('Course already added to your account.', 'warning');
+                return;
+            }
+
+            if (studentAccount.deletedCourses.includes(courseId)) {
+                showMessage('Cannot add a deleted course. Please contact administrator.', 'error');
+                return;
+            }
+
+            studentAccount.addedCourses.push(courseId);
+            showMessage(`"${courseName}" has been added to your courses!`, 'success');
+            updateCourseCard(courseId);
+            updateStats();
+            updateLevelHeaders();
+        }
+
+        function deleteCourse(courseId, courseName, level) {
+            if (studentAccount.deletedCourses.length >= studentAccount.maxDeletes) {
+                showMessage('Maximum number of courses deleted (2). Cannot delete more courses.', 'error');
+                return;
+            }
+
+            if (!studentAccount.addedCourses.includes(courseId)) {
+                showMessage('Cannot delete a course that is not in your account.', 'error');
+                return;
+            }
+
+            if (confirm(`Are you sure you want to delete "${courseName}"? This action cannot be undone.`)) {
+                // Remove from added courses and add to deleted courses
+                studentAccount.addedCourses = studentAccount.addedCourses.filter(id => id !== courseId);
+                studentAccount.deletedCourses.push(courseId);
+                showMessage(`"${courseName}" has been deleted from your courses.`, 'success');
+                updateCourseCard(courseId);
+                updateStats();
+                updateLevelHeaders();
+            }
+        }
+
+        function startLearning(courseId, courseName) {
+            showMessage(`Starting "${courseName}"... Redirecting to course content.`, 'success');
+            setTimeout(() => {
+                alert(`Welcome to ${courseName}! Course content would load here.`);
+                // Here you would redirect to the actual course content
+                // window.location.href = `course.html?id=${courseId}`;
+            }, 1000);
+        }
+
+        // UI update functions
+        function updateCourseCard(courseId) {
+            const card = document.getElementById(courseId);
+            if (!card) return;
+
+            const isAdded = studentAccount.addedCourses.includes(courseId);
+            const isDeleted = studentAccount.deletedCourses.includes(courseId);
+
+            // Update card appearance
+            card.className = 'course-card';
+            if (isAdded && !isDeleted) {
+                card.classList.add('added');
+            } else if (isDeleted) {
+                card.classList.add('deleted');
+            }
+
+            // Update status indicator
+            let statusHtml = '';
+            if (isAdded && !isDeleted) {
+                statusHtml = '<div class="course-status status-added">Added</div>';
+            } else if (isDeleted) {
+                statusHtml = '<div class="course-status status-deleted">Deleted</div>';
+            }
+
+            const existingStatus = card.querySelector('.course-status');
+            if (existingStatus) {
+                existingStatus.remove();
+            }
+            if (statusHtml) {
+                card.insertAdjacentHTML('afterbegin', statusHtml);
+            }
+
+            // Update buttons
+            const actions = card.querySelector('.course-actions');
+            const courseName = card.querySelector('.course-title').textContent;
+            const level = card.dataset.level;
+
+            let actionsHtml = '';
+            if (isDeleted) {
+                actionsHtml = '<button class="action-btn" disabled style="background: #9ca3af;">Course Deleted</button>';
+            } else if (isAdded) {
+                actionsHtml = `
+                    <button class="action-btn delete-btn" onclick="deleteCourse('${courseId}', '${courseName}', '${level}')" 
+                            ${studentAccount.deletedCourses.length >= studentAccount.maxDeletes ? 'disabled' : ''}>
+                        Delete Course
+                    </button>
+                    <button class="action-btn start-btn" onclick="startLearning('${courseId}', '${courseName}')">
+                        Start Learning
+                    </button>
+                `;
+            } else {
+                actionsHtml = `
+                    <button class="action-btn add-btn" onclick="addCourse('${courseId}', '${courseName}', '${level}')"
+                            ${studentAccount.addedCourses.length >= studentAccount.maxAdds ? 'disabled' : ''}>
+                        Add Course
+                    </button>
+                `;
+            }
+
+            actions.innerHTML = actionsHtml;
+        }
+
+        function updateStats() {
+            document.getElementById('addedCount').textContent = studentAccount.addedCourses.length;
+            document.getElementById('deletedCount').textContent = studentAccount.deletedCourses.length;
+            document.getElementById('remainingAdds').textContent = studentAccount.maxAdds - studentAccount.addedCourses.length;
+            document.getElementById('remainingDeletes').textContent = studentAccount.maxDeletes - studentAccount.deletedCourses.length;
+        }
+
+        function updateLevelHeaders() {
+            Object.keys(courseData).forEach(level => {
+                const levelNum = level.replace('level', '');
+                const courses = courseData[level];
+                const addedCount = courses.filter(course => 
+                    studentAccount.addedCourses.includes(generateCourseId(course, level)) && 
+                    !studentAccount.deletedCourses.includes(generateCourseId(course, level))
+                ).length;
+                
+                const infoElement = document.querySelector(`#section-${level} .courses-added-info`);
+                if (infoElement) {
+                    infoElement.textContent = `${addedCount} of ${courses.length} courses added`;
+                }
+            });
+        }
+
+        function renderCourses() {
+            const container = document.getElementById('coursesContainer');
+            container.innerHTML = '';
+
+            Object.keys(courseData).forEach(level => {
+                const levelNum = level.replace('level', '');
+                const courses = courseData[level];
+                
+                const sectionHtml = `
+                    <div class="level-section" id="section-${level}">
+                        <div class="level-header">
+                            <div class="level-title">Level ${levelNum}</div>
+                            <div class="courses-added-info">
+                                0 of ${courses.length} courses added
+                            </div>
+                        </div>
+                        <div class="courses-grid" id="grid-${level}">
+                            ${courses.map(course => {
+                                const courseId = generateCourseId(course, level);
+                                
+                                return `
+                                    <div class="course-card" id="${courseId}" data-level="${level}">
+                                        <div class="course-title">${course}</div>
+                                        <div class="course-actions">
+                                            <button class="action-btn add-btn" onclick="addCourse('${courseId}', '${course}', '${level}')">
+                                                Add Course
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', sectionHtml);
+            });
+
+            // Apply current filter
+            if (currentFilter !== 'all') {
+                filterCourses(currentFilter);
+            }
+        }
+
+        function generateCourseId(courseName, level) {
+            return `${level}-${courseName.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+        }
+
+        // Filter functions
+        function filterCourses(filter, tabElement) {
+            currentFilter = filter;
+            
+            // Update active tab
+            if (tabElement) {
+                document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+                tabElement.classList.add('active');
+            }
+
+            // Show/hide courses based on filter
+            document.querySelectorAll('.course-card').forEach(card => {
+                const courseId = card.id;
+                const isAdded = studentAccount.addedCourses.includes(courseId);
+                const isDeleted = studentAccount.deletedCourses.includes(courseId);
+                
+                let shouldShow = false;
+                switch(filter) {
+                    case 'all':
+                        shouldShow = true;
+                        break;
+                    case 'added':
+                        shouldShow = isAdded && !isDeleted;
+                        break;
+                    case 'deleted':
+                        shouldShow = isDeleted;
+                        break;
+                    case 'available':
+                        shouldShow = !isAdded && !isDeleted;
+                        break;
+                }
+
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+
+            // Hide empty sections
+            document.querySelectorAll('.level-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.course-card[style*="block"], .course-card:not([style*="none"])');
+                section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        // Search function
+        function searchCourses() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (searchTerm === '') {
+                // If no search term, apply current filter
+                filterCourses(currentFilter);
+                return;
+            }
+
+            document.querySelectorAll('.course-card').forEach(card => {
+                const courseTitle = card.querySelector('.course-title').textContent.toLowerCase();
+                const shouldShow = courseTitle.includes(searchTerm);
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+
+            // Hide empty sections during search
+            document.querySelectorAll('.level-section').forEach(section => {
+                const visibleCards = section.querySelectorAll('.course-card[style*="block"], .course-card:not([style*="none"])');
+                section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        }
+
+        // Toggle all sections
+        function toggleAllSections() {
+            const arrow = document.querySelector('.dropdown-arrow');
+            const sections = document.querySelectorAll('.level-section');
+            
+            sectionsVisible = !sectionsVisible;
+            arrow.classList.toggle('rotated');
+            
+            sections.forEach(section => {
+                if (sectionsVisible) {
+                    section.classList.remove('hidden');
+                    section.style.display = 'block';
+                } else {
+                    section.classList.add('hidden');
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Message system
+        function showMessage(text, type) {
+            const container = document.getElementById('messageContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            
+            container.appendChild(messageDiv);
+            
+            // Show message with animation
+            setTimeout(() => {
+                messageDiv.classList.add('show');
+            }, 100);
+            
+            // Remove message after 4 seconds
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+                setTimeout(() => {
+                    if (container.contains(messageDiv)) {
+                        container.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Close profile dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.user-profile')) {
+                document.getElementById('profileDropdown').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

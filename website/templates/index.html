@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anidasoɔ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='html.js') }}"></script>
+    <script src="{{ url_for('static', filename='lesson.js') }}"></script>
+
+    
+
+</head>
+<body>
+    <!--Header and Navbar-->
+     <header> 
+        <nav>
+            <h2>ANIDASOƆ</h2>
+                <a href="{{ url_for('views.home') }}" class="nav-link active">Home</a>
+                <a href="{{ url_for('views.lessons') }}">Lessons</a>
+                <a href="{{ url_for('views.about_us') }}">About Us</a>
+                <a href="{{ url_for('views.contact_us') }}">Contact Us</a>
+                <button class="login"><a href="{{ url_for('views.log_in') }}">Log-out</a></button>
+        </nav>
+
+     </header>
+    <div class="section_one" >
+            <img src="{{ url_for('static', filename='image/hero.png') }}" alt="#">
+            <div class="main">
+                <h1>A study platform designed to aid our physical and mathematical science students!</h1>
+                <p >Anidasoɔ, a  team studying in the University Of Ghana , has brought the entire math courses to your doorstep, with an excellent syllabus designed to improve on the math skills of our students at your own convinience.</p>
+                <button><a href="signup.html" target="_blank">Get started for free</a></button>
+            </div>
+    </div>
+    <!-- second division of text
+    first section -->        
+    <div class="section_2">
+        <div class="text">
+        <div class="text2">
+            <h1>Unlock your potential and achieve academic excellence</h1>
+            <p class="deux">With our excellent syllabus specifically made to improve the learning 
+            scope of your students, we aim to have our students achieve straight A’s through
+                consistent use of our platform</p>
+        </div>
+        <img src="{{ url_for('static', filename='image/section.png') }}" alt="#">
+        </div>
+
+        <div class="text3">
+        <p class="why">Why  Choose Our Platform?</p>
+        <div class="text4">
+        <div class="first">
+            <img src="{{ url_for('static', filename='image/Self-paced.png') }}" alt="#">
+            <h3>Self-paced Learning</h3>
+            <p>With a stable internet connection  and a laptop or tablet, anidasoɔ is always available to any schedule  you may have</p>
+        </div>
+        <div class="second">
+            <img src="{{ url_for('static', filename='image/unrestricted-access.png') }}" alt="#">
+            <h3>Unrestricted Access</h3>
+            <p>Anidasoɔ  allows unrestricted access to its students giving them access to all the tools we have</p>
+        </div>
+        <div class="third">
+            <img src="{{ url_for('static', filename='image/practice-tests.png') }}" alt="#">
+            <h3>Practice tests</h3>
+            <p>From our carefully designed syllabus, anidasoɔ provides occasional tests and quizzes, to 
+               improve on the students' Mathematics skills.</p>
+        </div>
+        </div>
+     </div>
+    </div>
+
+     <script>
+        window.addEventListener("scroll", function() {
+        const header = document.querySelector("header");
+        
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+        });
+
+     </script>
+</body>
+</html>

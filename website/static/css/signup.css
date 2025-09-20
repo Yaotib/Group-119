@@ -1,0 +1,493 @@
+/* Color variables */
+:root {
+  --primary-color: #0456ab;
+  --secondary-color: #daf0fd;
+  --tetiary-color: #6395c7;
+  --scrolled-color: #ffffffba;
+
+  --text-color: #000000;
+  --background-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat";
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 5rem;
+}
+
+header {
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  position: fixed;
+  background: transparent;
+  transition: background 0.3s ease;
+  transition: height 0.3s ease-in-out;
+  transition: width 0.6s ease-in-out;
+
+  z-index: 1000;
+}
+
+header.scrolled {
+  background: var(--scrolled-color);
+  height: 8vh;
+  backdrop-filter: blur(0.6rem);
+  width: 85%;
+  margin-top: 1vh;
+  border-radius: 3rem;
+}
+
+header nav h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Header and Navbar */
+header nav {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+}
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: ease-in-out 0.3s;
+}
+nav a:hover {
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  background-color: var(--secondary-color);
+}
+
+.active {
+  border-bottom: 0.1rem solid var(--primary-color);
+}
+
+.login {
+  padding: 0.4rem 4rem;
+  border: 0.1rem solid var(--primary-color);
+  border-radius: 3rem;
+  background-color: transparent;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.login:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* first section of text css */
+.section_one {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  height: 90vh;
+}
+.section_one img {
+  width: 70vw;
+  height: 70vh;
+}
+
+.section_one .main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.section_one h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.section_one p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.section_one .main button {
+  background-color: var(--primary-color);
+  border: none;
+  width: 70%;
+  padding: 0.6rem;
+  color: var(--background-color);
+  font-weight: bold;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  transition: ease-in-out 0.3s;
+}
+
+.main button:hover {
+  background-color: var(--background-color);
+  border: 0.1rem solid var(--primary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* second division , first section of text css */
+
+.section_2 {
+  background-color: #daf0fd;
+  border-radius: 40vw 0 0 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+.section_2 .text{
+  display: inline-flex;
+}
+.section_2 .text img {
+  width: 50%;
+  height: auto;
+}
+.section_2 .text2 {
+  padding-left: 15vw;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  gap: 1.2rem;
+  padding-top: 35vh;
+  padding-bottom: 15vh;
+}
+.section_2 h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 3rem;
+}
+.section_2 .deux {
+  margin: 0;
+  font-size: 1.2rem;
+}
+/* second part of the second section */
+.section_2 .text3{
+  justify-items: center;
+  background-color: white;
+  width: auto;
+  height: auto;
+  border-radius: 2rem;
+  margin: 4rem;
+  
+}
+
+.section_2 .text3 .text4 {
+  padding: 1.2rem;
+  display:inline-flex;
+  gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  justify-content: center;
+  padding-left: 4rem;
+  padding-bottom: 3rem;
+  
+}
+.section_2 .text3 .why {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+/* first of the column */
+.section_2 .text3 .text4 .first {
+display: flex;
+flex-direction: column;
+background-color: var(--secondary-color);
+width:30rem;
+height: 30rem;
+min-height: 22rem;
+align-items: center;
+transition: all 0.3s ease;
+border-radius: 1.2rem;
+padding: 1rem;
+box-sizing: border-box;
+}
+.section_2 .text3 .text4 .first:hover {
+transform: scale(1.05);
+box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+.section_2 .text3 .text4 .first h3 {
+color: var(--primary-color);
+margin: 0;
+font-size: 1.8rem;
+}
+.section_2 .text3 .text4 .first p{
+justify-content: center;
+padding-left: 0.6rem;
+font-size: 1.2rem;
+}
+.section_2 .text3 .text4 .first img{
+width: 60%;
+height: auto;
+max-width: 16rem;
+}
+/* second of the column */
+.section_2 .text3 .text4 .second{
+display: flex;
+flex-direction: column;
+background-color: var(--secondary-color);
+width: 30rem;
+height: 30rem;
+min-height: 22rem;
+align-items: center;
+transition: all 0.3s ease;
+border-radius: 1.2rem;
+padding: 1rem;
+box-sizing: border-box;
+}
+.section_2 .text3 .text4 .second:hover{
+transform: scale(1.05);
+box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+.section_2 .text3 .text4 .second h3{
+color: var(--primary-color);
+margin: 0;
+font-size: 1.8rem;
+}
+.section_2 .text3 .text4 .second p{
+justify-content: center;
+padding-left: 0.6rem;
+font-size: 1.2rem;
+}
+.section_2 .text3 .text4 .second img{
+width: 60%;
+height: auto;
+max-width: 16rem;
+}
+/* third of the column */
+.section_2 .text3 .text4 .third {
+display: flex;
+flex-direction: column;
+background-color: var(--secondary-color);
+width: 30rem;
+height: 30rem;
+min-height: 22rem;
+align-items: center;
+transition: all 0.3s ease;
+border-radius: 1.2rem;
+padding: 1rem;
+box-sizing: border-box;
+}
+.section_2 .text3 .text4 .third:hover {
+transform: scale(1.05);
+box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+.section_2 .text3 .text4 .third h3 {
+color: var(--primary-color);
+margin: 0;
+font-size: 1.8rem;
+}
+.section_2 .text3 .text4 .third p{
+justify-content: center;
+padding-left: 0.6rem;
+font-size: 1.2rem;
+}
+.section_2 .text3 .text4 .third img{
+width: 60%;
+height: auto;
+max-width: 16rem;
+}
+
+/* Responsive Design for the singup page */
+/* body background */
+.body {
+  background-image: url("signup.png");
+  position: relative;
+  background-position: center;
+   margin: 0;           /* remove default margins */
+  padding: 0;
+  width: 100vw;        /* 100% of viewport width */
+  height: 100vh;       /* 100% of viewport height */
+  overflow: hidden; 
+  background-size: cover;
+  min-height: 100vh;
+  
+}
+
+.body::before {
+  content: "";
+  position:absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 0;           /* remove default margins */
+  padding: 0;
+  width: 100vw;        /* 100% of viewport width */
+  height: 100vh;       /* 100% of viewport height */
+  overflow: hidden; 
+  background-color:rgba(25, 36, 46, 0.2);
+  z-index: -1;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+/* forms background */
+.wrapper {  
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+  text-align: center;
+  background: rgba(4, 86, 171, 0.8);
+  backdrop-filter: blur(0.3rem);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
+  padding: 3%; /* Reduced from 5% to 3% */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 55%;
+  margin-top: 8%; /* Adjusted to center the smaller form */
+  width: 35%;
+  min-width: 300px;
+  height: auto;
+  min-height: 350px; /* Reduced from 500px to 350px */
+  box-sizing: border-box;
+  max-width: 600px;
+  max-height: 450px; /* Reduced from 700px to 450px */
+}
+
+/* signup and login word */
+.wrapper h1 {
+  color: white;
+  font-size: 1.8rem; /* Slightly reduced from 2rem */
+  margin: 0.5rem 0; /* Reduced margin */
+  line-height: 1.2; /* Add line height for better spacing */
+  white-space: pre-line; /* This will respect line breaks in the text */
+}
+
+.wrapper .span {
+  font-size: 2.2rem; /* Slightly reduced from 2.5rem */
+  font-weight: 500;
+  color: white;
+  display: inline; /* Changed from block to inline to keep on same line */
+  margin-top: 0.5rem; /* Add space between lines */
+}
+
+.wrapper .span1 {
+  font-size: 2.2rem; /* Same size as ANIDASO */
+  font-weight: 500;
+  color: white;
+  display: inline; /* Keep it inline with ANIDASO */
+  margin-left: -0.2rem; /* Slight negative margin to bring it closer */
+}
+
+.wrapper h2 {
+  color: white;
+  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  text-decoration: underline;
+  font-size: 1.1rem; /* Slightly reduced from 1.2rem */
+}
+
+/* signup entities */
+.wrapper form {
+  flex-direction: column;
+  gap: 1rem; /* Reduced from 1.5rem */
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+/* name */
+.wrapper form .name {
+  display: flex;
+  width: 100%;
+  gap: 2%;
+}
+.wrapper form .name input {
+  flex: 1;
+  border-radius: 0.3rem;
+  background-color: #b0cfee;
+  border: none;
+  padding: 0.5rem; /* Slightly reduced from 0.6rem */
+  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* email */
+.wrapper form .email {
+  display: flex;
+  width: 104%;
+  gap: 4%;
+}
+.wrapper form .email span {
+  font-size: 1rem;
+  color: black;
+}
+.wrapper form .email input {
+  flex: 1;
+  border-radius: 0.3rem;
+  background-color: #b0cfee;
+  border: none;
+  padding: 0.5rem; /* Slightly reduced from 0.6rem */
+  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* password & ID */
+.wrapper form .pass,
+.wrapper form .pass_2 {
+  display: flex;
+  width: 104%;
+  gap: 2%;
+}
+.wrapper form .pass input,
+.wrapper form .pass_2 input {
+  flex: 1;
+  border-radius: 0.3rem;
+  background-color: #b0cfee;
+  border: none;
+  padding: 0.5rem; /* Slightly reduced from 0.6rem */
+  box-shadow: 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+/* signup button */
+.wrapper form .submit {
+  padding: 0.6rem 2rem; /* Reduced from 0.8rem */
+  border-radius: 0.5rem;
+  margin: 0.5rem auto; /* Reduced margin */
+  background-color: #b0cfee;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 60%; /* Reduce width to make centering more visible */
+  max-width: 150px; /* Smaller max-width */
+}
+
+.wrapper form .submit:hover {
+  box-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+
+/* text & links - moved inside the wrapper */
+.wrapper .signup-link {
+  color: white;
+  font-size: 0.9rem;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+.wrapper .signup-link .link_1 {
+  color: #b0cfee;
+  text-decoration: none;
+  font-weight: bold;
+}
+.wrapper .signup-link .link_1:hover {
+  text-decoration: underline;
+}
