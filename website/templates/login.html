@@ -4,23 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="{{ url_for('static', filename='js/html.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/lesson.js') }}"></script>
-    
-    
+    <link rel="stylesheet" href="login.css">
 </head>
-<body class="body" style="
-    background-image:url('{{ url_for('static', filename='image/signup.png') }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;">
-
+<body class="body">
     <div class="wrapper">
         <h1>Welcome to</h1>
         <span class="span">ANIDASO <span  class="span1">ɔ</span></span>
         
-        <form id="form" action="/home">
+        <form id="form" action="">
             <!-- Changed class from "pass" to "email" to match CSS -->
             <div class="email">
                 <label for="email">
@@ -46,7 +37,7 @@
         <!-- Wrapped in signup-link div to match CSS -->
         <div class="signup-link">
             <span class="text">Don't have an account?</span>
-            <a class="link_1" href="{{ url_for('auth.sign_up') }}">SIGNUP</a>
+            <a class="link_1" href="signup.html">SIGNUP</a>
         </div>
         <script src="validation.js"></script>
     </div>
